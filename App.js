@@ -1,29 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React from 'react';
+import { StyleSheet, Button, Text, TextInput, View } from 'react-native';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import firebase from 'react-native-firebase'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+firebase.firestore().settings({
+  persistence: true
+})
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends React.Component {
+  constructor() {
+    super()
+    this.ref = firebase.firestore().collection('test')
+    this.state = {
+      text: ''
+    }
+  }
+
+  addText() {
+    debugger;
+    this.ref.add({
+      text: this.state.text,
+    })
+    this.setState({
+      text: ''
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <TextInput
+          value={this.state.text}
+          onChangeText={(text) => {
+            this.setState({ text: text })
+          }}
+        />
+        <Button
+          title={'Add Text1'}
+          onPress={() => this.addText()} />
       </View>
     );
   }
@@ -32,18 +46,11 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#fff',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: 'center',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  textinput: {
+    width: '100%',
   },
 });

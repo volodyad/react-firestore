@@ -55,6 +55,6 @@ buck-out/
 # Bundle artifact
 *.jsbundle
 
-/ios/Pods/
-ios/Pods/*
+ios/Pods/
+ios/GoogleService-Info.plist
 third-party/
