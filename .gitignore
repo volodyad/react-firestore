@@ -58,3 +58,4 @@ buck-out/
 ios/Pods/
 ios/GoogleService-Info.plist
 third-party/
+android/app/google-services.json

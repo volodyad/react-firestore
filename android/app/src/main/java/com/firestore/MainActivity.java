@@ -1,4 +1,4 @@
-package com.firestore;
+package com.reactnativefirestore;
 
 import com.facebook.react.ReactActivity;
 

@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.firestore",
+    package = "com.reactnativefirestore",
 )
 
 android_resource(
     name = "res",
-    package = "com.firestore",
+    package = "com.reactnativefirestore",
     res = "src/main/res",
 )
 
