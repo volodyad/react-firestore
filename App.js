@@ -6,24 +6,65 @@ import firebase from 'react-native-firebase'
 firebase.firestore().settings({
   persistence: true
 })
-
+  const id = "1*090023";
 export default class App extends React.Component {
   constructor() {
     super()
-    this.ref = firebase.firestore().collection('test')
+
     this.state = {
       text: ''
     }
   }
 
+
+  // reload() {
+  //   firebase.firestore().collection('reference1').doc('default').collection('account').doc(id).get()
+  //           .then(dd => {
+  //             debugger
+  //           })
+
+  //           firebase.firestore().collection('reference').doc('default').collection('account').doc(id).get()
+  //           .then(dd => {
+  //             debugger
+  //           })
+  // }
+
   addText() {
+ 
     debugger;
-    this.ref.add({
-      text: this.state.text,
-    })
-    this.setState({
-      text: ''
-    })
+  //  firebase.firestore().goOffline();
+ const  t =  firebase.firestore(); 
+
+//  firebase.firestore().collection('reference1').doc('default').collection('account').doc('1*102982')
+//     .onSnapshot(function(doc) {
+//         console.warn("Current data: ", doc.data());
+//     });
+
+    firebase.firestore().collection('reference1').doc('default').collection('account').get().then(snapshot => {
+      console.warn(snapshot._docs.length);
+      debugger;
+
+
+      // firebase.firestore().collection('reference1').doc('default').collection('account').doc('1*102982').get()
+      // .then((doc) => {
+      //   debugger;
+      //   console.warn(doc)
+      // }
+
+    
+    // const data = snapshot.data();
+      // debugger
+      // firebase.firestore().collection('reference1').doc('default').collection('account').doc(id).delete()
+      //   .then(() => {
+      //     debugger;
+      //   })
+      //   .catch(e => {
+      //     firebase.firestore().collection('reference1').doc('default').collection('account').doc(id).get({ source: 'cache' })
+      //       .then(dd => {
+      //         debugger
+      //       })
+      //   });
+    });
   }
 
   render() {
@@ -38,6 +79,9 @@ export default class App extends React.Component {
         <Button
           title={'Add Text1'}
           onPress={() => this.addText()} />
+        <Button
+          title={'Reload'}
+          onPress={() => this.reload()} />
       </View>
     );
   }
